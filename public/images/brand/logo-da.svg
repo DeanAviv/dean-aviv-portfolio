@@ -1,0 +1,7 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dean Aviv DA logo">
+  <rect width="512" height="512" rx="96" fill="none"/>
+  <path d="M118 136H206C278.9 136 336 189.1 336 256C336 322.9 278.9 376 206 376H118V136Z" stroke="#6EE7A8" stroke-width="30" stroke-linejoin="round"/>
+  <path d="M118 136V376" stroke="#F3F7F2" stroke-width="30" stroke-linecap="round"/>
+  <path d="M278 376L364 136L450 376" stroke="#F3F7F2" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M315 290H413" stroke="#6EE7A8" stroke-width="30" stroke-linecap="round"/>
+</svg>

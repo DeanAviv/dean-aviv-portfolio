@@ -11,4 +11,5 @@ yarn-error.log*
 pnpm-debug.log*
 dev-server*.log
 next-start*.log
+Logo/
 .DS_Store

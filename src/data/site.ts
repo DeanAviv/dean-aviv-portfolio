@@ -4,7 +4,8 @@ export const site = {
   location: "Israel",
   email: "hello@deanaviv.dev",
   logo: {
-    src: "",
+    src: "/images/brand/logo-da.svg",
+    pngFallback: "/images/brand/logo-da.png",
     alt: "Dean Aviv logo",
     fallbackText: "DA",
   },

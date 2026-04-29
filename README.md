@@ -46,17 +46,21 @@ Reusable presentation components live in `src/components`.
 Logo rendering is centralized in `src/components/LogoMark.tsx`, and the editable
 logo settings are in `src/data/site.ts`.
 
+Logo files are located in `/public/images/brand`. Replace `logo-da.svg` to
+update the site logo.
+
 1. Add the logo file to `public/images`, for example:
 
 ```text
-public/images/dean-aviv-logo.svg
+public/images/brand/logo-da.svg
 ```
 
 2. Update `site.logo.src`:
 
 ```ts
 logo: {
-  src: "/images/dean-aviv-logo.svg",
+  src: "/images/brand/logo-da.svg",
+  pngFallback: "/images/brand/logo-da.png",
   alt: "Dean Aviv logo",
   fallbackText: "DA",
 }
