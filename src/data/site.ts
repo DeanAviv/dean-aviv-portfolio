@@ -89,7 +89,7 @@ export const site = {
     { label: "Contact", href: "#contact" },
   ],
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/dean-aviv/" },
+    { label: "GitHub", href: "https://github.com/DeanAviv" },
   ],
 };
