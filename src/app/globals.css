@@ -83,9 +83,14 @@ a {
   display: block;
   opacity: 0;
   transform: translateY(0.18em);
-  white-space: nowrap;
   animation: hero-line-reveal 520ms ease-out forwards;
   animation-delay: 200ms;
+}
+
+@media (min-width: 640px) {
+  .typing-line {
+    white-space: nowrap;
+  }
 }
 
 .typing-line:nth-child(2) {

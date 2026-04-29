@@ -9,7 +9,7 @@ export function HeroSection() {
           <p className="font-mono text-sm uppercase tracking-[0.28em] text-accent">
             {site.role}
           </p>
-          <h1 className="mt-6 text-5xl font-semibold leading-[1.02] text-foreground sm:text-7xl lg:text-8xl">
+          <h1 className="mt-6 text-[2.6rem] font-semibold leading-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
             {site.heroLines.map((line) => (
               <span key={line} className="typing-line">
                 {line}

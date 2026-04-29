@@ -10,10 +10,9 @@ export const site = {
     fallbackText: "DA",
   },
   heroLines: ["I build games.", "I teach developers.", "I design systems."],
-  heroKicker:
-    "Unity development, gameplay systems, technical instruction, and project guidance.",
+  heroKicker: "Hey, I'm Dean \u2014 a game developer and instructor.",
   heroIntro:
-    "I build playable systems, explain complex ideas clearly, and help students and teams move from prototype to something that actually works.",
+    "I build systems that work, teach how they're built, and help students and teams move from prototype to something real. My background is rooted in Unity, but I enjoy exploring new tools, engines, and approaches to keep learning and expanding how I build.",
   focus: {
     title: "What I focus on",
     intro:
