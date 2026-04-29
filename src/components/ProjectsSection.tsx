@@ -1,18 +1,21 @@
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { projects } from "@/data/projects";
+import { site } from "@/data/site";
 
 export function ProjectsSection() {
+  const featuredProjects = projects.filter((project) => project.isFeatured);
+
   return (
     <section id="projects" className="px-5 py-20 sm:px-8 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Featured Projects"
-          title="Production work, tools, and playable experiments."
-          description="A first pass at Dean's project shelf. Replace the placeholder images and expand the text as the portfolio grows."
+          eyebrow={site.sections.projects.eyebrow}
+          title={site.sections.projects.title}
+          description={site.sections.projects.description}
         />
         <div className="mt-14 grid gap-5 md:grid-cols-2">
-          {projects.map((project) => (
+          {featuredProjects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
         </div>

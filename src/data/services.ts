@@ -1,26 +1,58 @@
 export type Service = {
   title: string;
   description: string;
-  items: string[];
+  suitableFor: string;
+  bullets: string[];
+  callToAction: string;
 };
 
 export const services: Service[] = [
   {
-    title: "Unity Gameplay Development",
+    title: "1-on-1 Unity Mentoring",
     description:
-      "Gameplay systems, prototypes, production features, technical polish, and maintainable architecture.",
-    items: ["Core loops", "UI flows", "Tools", "Performance passes"],
+      "Personal guidance for developers who want to understand Unity, C#, and gameplay systems more deeply.",
+    suitableFor: "Students, junior developers, and self-taught Unity creators.",
+    bullets: ["Weekly sessions", "Code walkthroughs", "Practice plans", "Clear next steps"],
+    callToAction: "Book mentoring",
   },
   {
-    title: "Technical Instruction",
+    title: "Project Guidance",
     description:
-      "Practical Unity and C# training for students, junior developers, and teams.",
-    items: ["Curriculum", "Mentoring", "Code reviews", "Workshops"],
+      "A practical outside perspective when a project has momentum but needs structure, scope, or direction.",
+    suitableFor: "Solo developers, small teams, and student final projects.",
+    bullets: ["Scope decisions", "Feature planning", "Milestones", "Unity workflow advice"],
+    callToAction: "Plan the project",
   },
   {
-    title: "Project Consulting",
+    title: "Debug Sessions",
     description:
-      "Focused help with scope, systems design, refactoring, and shipping decisions.",
-    items: ["Architecture", "Debugging", "Production planning", "Documentation"],
+      "Focused sessions for tracking down broken behavior, confusing errors, or systems that stopped making sense.",
+    suitableFor: "Developers stuck on a specific Unity or C# problem.",
+    bullets: ["Bug isolation", "Runtime checks", "Inspector setup", "Fix explanations"],
+    callToAction: "Unblock a bug",
+  },
+  {
+    title: "Code / Architecture Review",
+    description:
+      "A readable review of your Unity codebase with attention to coupling, responsibilities, and future changes.",
+    suitableFor: "Projects that work, but feel harder to change than they should.",
+    bullets: ["Class responsibilities", "System boundaries", "Refactor suggestions", "Maintainability notes"],
+    callToAction: "Review the code",
+  },
+  {
+    title: "Small Group Workshops",
+    description:
+      "Hands-on Unity learning for groups that need practical systems, not abstract slides.",
+    suitableFor: "Schools, bootcamps, teams, and learning groups.",
+    bullets: ["Unity fundamentals", "Gameplay systems", "ScriptableObjects", "Tooling workflows"],
+    callToAction: "Run a workshop",
+  },
+  {
+    title: "Portfolio & Final Project Support",
+    description:
+      "Help shaping a student or junior developer project into something presentable, explainable, and finished.",
+    suitableFor: "Students preparing final projects, applications, or portfolio pieces.",
+    bullets: ["Project polish", "Feature prioritization", "Presentation flow", "Code cleanup"],
+    callToAction: "Polish the project",
   },
 ];

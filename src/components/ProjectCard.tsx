@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Project } from "@/data/projects";
 import { Tag } from "./Tag";
 
@@ -19,18 +20,48 @@ export function ProjectCard({ project }: ProjectCardProps) {
         />
       </div>
       <div className="p-6">
-        <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent">
-          {project.role}
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent">
+            {project.role}
+          </p>
+          {project.company ? (
+            <span className="rounded-full border border-line px-2.5 py-1 text-xs text-muted">
+              {project.company}
+            </span>
+          ) : null}
+        </div>
         <h3 className="mt-3 text-2xl font-semibold text-foreground">
           {project.title}
         </h3>
         <p className="mt-3 leading-7 text-muted">{project.description}</p>
+        <p className="mt-3 text-sm leading-7 text-foreground/68">
+          {project.extendedDescription}
+        </p>
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
+        {project.projectLink || project.caseStudyLink ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.projectLink ? (
+              <Link
+                href={project.projectLink}
+                className="rounded-md border border-accent/45 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent/10"
+              >
+                View project
+              </Link>
+            ) : null}
+            {project.caseStudyLink ? (
+              <Link
+                href={project.caseStudyLink}
+                className="rounded-md border border-line px-4 py-2 text-sm font-semibold text-foreground transition hover:border-accent/50 hover:bg-white/[0.04]"
+              >
+                Case study
+              </Link>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </article>
   );

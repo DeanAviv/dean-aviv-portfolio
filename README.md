@@ -28,19 +28,43 @@ Then open the local URL printed in the terminal, usually:
 http://localhost:3000
 ```
 
-## Where To Edit Text
+## Where To Edit Site Text
 
-Most content is intentionally kept in `src/data` so the site is easy to edit.
+Most important content lives in `src/data` so the site is easy to edit without
+digging through components.
 
-- General site text, navigation, contact, and hero lines: `src/data/site.ts`
+- General site text, logo config, navigation, hero, section headers, and contact: `src/data/site.ts`
 - Featured projects: `src/data/projects.ts`
-- Student projects: `src/data/studentProjects.ts`
+- Student projects and student links: `src/data/studentProjects.ts`
 - Code showcase examples: `src/data/codeShowcases.ts`
 - Services: `src/data/services.ts`
 
-Reusable components live in `src/components`.
+Reusable presentation components live in `src/components`.
 
-## Where To Replace Images
+## Replace The Logo
+
+Logo rendering is centralized in `src/components/LogoMark.tsx`, and the editable
+logo settings are in `src/data/site.ts`.
+
+1. Add the logo file to `public/images`, for example:
+
+```text
+public/images/dean-aviv-logo.svg
+```
+
+2. Update `site.logo.src`:
+
+```ts
+logo: {
+  src: "/images/dean-aviv-logo.svg",
+  alt: "Dean Aviv logo",
+  fallbackText: "DA",
+}
+```
+
+If `src` is empty, the header uses the fallback `DA` mark.
+
+## Replace Project Images
 
 Images are stored in:
 
@@ -48,14 +72,15 @@ Images are stored in:
 public/images
 ```
 
-The current images are SVG placeholders. Replace them with real project images when ready.
+The current images are SVG placeholders. Replace them with real project images
+when ready.
 
 Suggested sizes:
 - Project images: `1600 x 1000`
 - Student project images: `1200 x 900`
 
-If you keep the same filename, no code changes are needed. If you rename an image,
-update the matching `image` field in `src/data/projects.ts` or
+If you keep the same filename, no code changes are needed. If you rename an
+image, update the matching `image` field in `src/data/projects.ts` or
 `src/data/studentProjects.ts`.
 
 ## Add A New Project
@@ -65,18 +90,25 @@ Open `src/data/projects.ts` and add a new item:
 ```ts
 {
   title: "Project Name",
-  role: "Developer",
-  description: "Short description of the project.",
-  tags: ["Unity", "C#", "Tools"],
+  role: "Gameplay Programmer",
+  company: "Client or Studio Name",
+  description: "Short card description.",
+  extendedDescription: "A little more context about the work and decisions.",
+  tags: ["Unity", "C#", "Gameplay Systems"],
   image: "/images/project-name.svg",
+  projectLink: "https://example.com",
+  caseStudyLink: "/case-studies/project-name",
+  isFeatured: true,
 }
 ```
 
-Add the matching image to `public/images`.
+`company`, `projectLink`, and `caseStudyLink` are optional. If a link is missing,
+its button is hidden.
 
-## Add A New Student Project
+## Add Student Links
 
-Open `src/data/studentProjects.ts` and add a new item:
+Open `src/data/studentProjects.ts`. Each student card supports these optional
+links:
 
 ```ts
 {
@@ -85,41 +117,62 @@ Open `src/data/studentProjects.ts` and add a new item:
   description: "Short description of what they built.",
   image: "/images/student-game.svg",
   profileUrl: "https://example.com",
+  linkedInUrl: "https://www.linkedin.com/",
+  githubUrl: "https://github.com/",
+  projectUrl: "https://example.com/play",
+  note: "Optional short note about what makes the project stand out.",
 }
 ```
 
-`profileUrl` is optional. Remove it if there is no profile link yet.
+Missing links are automatically hidden.
 
-## Add A New Code Showcase
+## Add A Service
 
-Open `src/data/codeShowcases.ts`.
-
-The current section uses the first item in the `codeShowcases` array. To replace
-the example, edit that first item. To prepare future examples like Signals,
-Dependency Injection, ScriptableObjects, or Localization, add more objects with
-this shape:
+Open `src/data/services.ts` and add:
 
 ```ts
 {
-  title: "Signals",
+  title: "Debug Sessions",
+  description: "Focused help with a specific Unity or C# problem.",
+  suitableFor: "Developers stuck on a bug or confusing system.",
+  bullets: ["Bug isolation", "Runtime checks", "Fix explanations"],
+  callToAction: "Unblock a bug",
+}
+```
+
+Keep service copy practical and direct. The site is meant to feel helpful, not
+salesy.
+
+## Add A Code Showcase
+
+Open `src/data/codeShowcases.ts` and add a new object:
+
+```ts
+{
+  id: "signals",
+  title: "Zenject Signals",
   summary: "Short overview of what this code demonstrates.",
-  tags: ["Unity", "C#", "Architecture"],
+  technologies: ["Unity", "C#", "Zenject"],
   files: [
     {
-      fileName: "SignalBus.cs",
+      fileName: "SignalExample.cs",
       language: "csharp",
-      code: `public sealed class SignalBus { }`,
+      code: `public readonly struct SignalExample { }`,
     },
   ],
   explanation: {
-    title: "What this example shows",
+    title: "What Dean would walk through",
     points: [
       "Explain the design decision.",
       "Explain how it stays maintainable.",
     ],
   },
+  whyThisMatters: "Explain why this pattern helps a real project.",
 }
 ```
+
+The code showcase component automatically creates the showcase tabs and file
+tabs from this data.
 
 ## Deploy Later To Vercel
 

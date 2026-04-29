@@ -4,9 +4,10 @@ import { useMemo, useState } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Tag } from "@/components/Tag";
 import { codeShowcases } from "@/data/codeShowcases";
+import { site } from "@/data/site";
 
 const keywordPattern =
-  /\b(public|private|sealed|class|event|readonly|return|if|new|using|void|bool|int|null|true|false)\b/g;
+  /\b(public|private|sealed|class|event|readonly|return|if|new|using|void|bool|int|string|null|true|false|get|set|foreach|static|struct)\b/g;
 
 function highlightCode(code: string) {
   return code.split("\n").map((line, lineIndex) => {
@@ -26,14 +27,23 @@ function highlightCode(code: string) {
               </span>
             );
           }
+
           keywordPattern.lastIndex = 0;
-          if (part.includes("Inventory") || part.includes("Item")) {
+
+          if (
+            part.includes("Inventory") ||
+            part.includes("Signal") ||
+            part.includes("Locale") ||
+            part.includes("Variable") ||
+            part.includes("Validator")
+          ) {
             return (
               <span key={`${part}-${partIndex}`} className="text-accent">
                 {part}
               </span>
             );
           }
+
           return <span key={`${part}-${partIndex}`}>{part}</span>;
         })}
       </span>
@@ -42,8 +52,17 @@ function highlightCode(code: string) {
 }
 
 export function CodeShowcase() {
-  const showcase = codeShowcases[0];
-  const [activeFileName, setActiveFileName] = useState(showcase.files[0].fileName);
+  const [activeShowcaseId, setActiveShowcaseId] = useState(codeShowcases[0].id);
+  const [activeFileName, setActiveFileName] = useState(
+    codeShowcases[0].files[0].fileName,
+  );
+
+  const showcase = useMemo(
+    () =>
+      codeShowcases.find((item) => item.id === activeShowcaseId) ??
+      codeShowcases[0],
+    [activeShowcaseId],
+  );
 
   const activeFile = useMemo(
     () =>
@@ -52,16 +71,44 @@ export function CodeShowcase() {
     [activeFileName, showcase.files],
   );
 
+  function selectShowcase(showcaseId: string) {
+    const nextShowcase =
+      codeShowcases.find((item) => item.id === showcaseId) ?? codeShowcases[0];
+
+    setActiveShowcaseId(nextShowcase.id);
+    setActiveFileName(nextShowcase.files[0].fileName);
+  }
+
   return (
-    <section id="code" className="border-y border-line bg-black/20 px-5 py-20 sm:px-8 sm:py-28">
+    <section
+      id="code"
+      className="border-y border-line bg-black/20 px-5 py-20 sm:px-8 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <SectionHeader
-          eyebrow="Code Showcase"
-          title="Readable systems with room to grow."
-          description={showcase.summary}
+          eyebrow={site.sections.code.eyebrow}
+          title={site.sections.code.title}
+          description={site.sections.code.description}
         />
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.35fr_0.65fr]">
+        <div className="mt-12 flex flex-wrap justify-center gap-2">
+          {codeShowcases.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => selectShowcase(item.id)}
+              className={`rounded-md border px-4 py-2 text-sm font-semibold transition ${
+                showcase.id === item.id
+                  ? "border-accent/60 bg-accent text-[#06100a]"
+                  : "border-line bg-white/[0.03] text-foreground hover:border-accent/50 hover:bg-white/[0.06]"
+              }`}
+            >
+              {item.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-[1.35fr_0.65fr]">
           <div className="overflow-hidden rounded-lg border border-line bg-[#090d0b]">
             <div className="flex flex-wrap gap-2 border-b border-line bg-white/[0.025] p-3">
               {showcase.files.map((file) => (
@@ -93,6 +140,7 @@ export function CodeShowcase() {
             <h3 className="mt-4 text-2xl font-semibold text-foreground">
               {showcase.explanation.title}
             </h3>
+            <p className="mt-4 leading-7 text-muted">{showcase.summary}</p>
             <ul className="mt-5 space-y-4 text-sm leading-7 text-muted">
               {showcase.explanation.points.map((point) => (
                 <li key={point} className="flex gap-3">
@@ -101,9 +149,19 @@ export function CodeShowcase() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-6 rounded-md border border-accent/20 bg-accent/8 p-4">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                Why this matters
+              </p>
+              <p className="mt-3 text-sm leading-7 text-foreground/78">
+                {showcase.whyThisMatters}
+              </p>
+            </div>
+
             <div className="mt-7 flex flex-wrap gap-2">
-              {showcase.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
+              {showcase.technologies.map((technology) => (
+                <Tag key={technology}>{technology}</Tag>
               ))}
             </div>
           </aside>

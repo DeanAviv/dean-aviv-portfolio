@@ -34,25 +34,22 @@ export function HeroSection() {
           <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(110,231,168,0.16),transparent_34%),linear-gradient(315deg,rgba(216,180,95,0.08),transparent_40%)]" />
           <div className="relative flex h-full min-h-[420px] flex-col justify-between rounded-md border border-white/10 bg-black/28 p-5">
             <div className="flex items-center justify-between border-b border-line pb-4 font-mono text-xs text-muted">
-              <span>UNITY_SYSTEMS.cs</span>
-              <span className="text-accent">PLAY MODE</span>
+              <span>{site.heroPanel.fileName}</span>
+              <span className="text-accent">{site.heroPanel.status}</span>
             </div>
             <div className="space-y-4 font-mono text-sm leading-7 text-foreground/84">
               <p>
                 <span className="text-steel">public sealed class</span>{" "}
-                <span className="text-accent">GameLoop</span>
+                <span className="text-accent">{site.heroPanel.lineOneClass}</span>
               </p>
-              <p className="pl-5 text-muted">
-                Build mechanics that feel good, tools that save time, and lessons
-                that make complex systems click.
-              </p>
+              <p className="pl-5 text-muted">{site.heroPanel.body}</p>
               <p>
-                <span className="text-amber">Update</span>() =&gt; clarity,
-                iteration, craft;
+                <span className="text-amber">Update</span>() =&gt;{" "}
+                {site.heroPanel.updateLine};
               </p>
             </div>
             <div className="grid grid-cols-3 gap-3">
-              {["Gameplay", "Tools", "Teaching"].map((item) => (
+              {site.heroPanel.focusItems.map((item) => (
                 <div
                   key={item}
                   className="rounded-md border border-line bg-white/[0.035] p-4"

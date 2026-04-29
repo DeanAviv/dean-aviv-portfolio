@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/LogoMark";
 import { site } from "@/data/site";
 
 export function Header() {
@@ -6,9 +7,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-line bg-background/78 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link href="#" className="group flex items-center gap-3">
-          <span className="grid size-10 place-items-center rounded-md border border-accent/35 bg-accent/10 font-mono text-sm font-bold text-accent">
-            DA
-          </span>
+          <LogoMark />
           <span>
             <span className="block text-sm font-semibold text-foreground">
               {site.name}
