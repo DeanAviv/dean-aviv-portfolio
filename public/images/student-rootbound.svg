@@ -1,0 +1,10 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" fill="#08100D"/>
+  <circle cx="606" cy="484" r="210" fill="#121B16" stroke="#26382D" stroke-width="10"/>
+  <path d="M608 690V484M608 484C514 468 450 408 416 306M608 484C718 446 788 374 834 266M608 484C700 540 770 612 818 704" stroke="#6EE7A8" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="416" cy="306" r="34" fill="#D8B45F"/>
+  <circle cx="834" cy="266" r="34" fill="#8FB1C7"/>
+  <circle cx="818" cy="704" r="34" fill="#D8B45F"/>
+  <text x="72" y="116" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="700">Rootbound</text>
+  <text x="76" y="170" fill="#9AA79D" font-family="Consolas, monospace" font-size="26">student project placeholder</text>
+</svg>

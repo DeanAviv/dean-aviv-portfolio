@@ -1,0 +1,11 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#080B0A"/>
+  <rect x="560" y="128" width="480" height="744" rx="96" fill="#111A15" stroke="#6EE7A8" stroke-width="10" opacity="0.95"/>
+  <rect x="626" y="224" width="348" height="552" rx="54" fill="#0D1210" stroke="#26362D" stroke-width="6"/>
+  <path d="M688 410H912" stroke="#6EE7A8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M688 484H864" stroke="#8FB1C7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M688 558H926" stroke="#D8B45F" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="800" cy="664" r="42" fill="#6EE7A8" opacity="0.85"/>
+  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Nickwatch</text>
+  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">Smartwatch companion app placeholder</text>
+</svg>
