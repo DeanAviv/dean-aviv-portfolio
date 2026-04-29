@@ -3,6 +3,4 @@
   <path d="M226 900C332 618 466 450 604 398C760 340 914 454 1012 900H226Z" fill="#142219"/>
   <path d="M260 850C390 642 498 536 604 500C748 452 878 570 962 850" stroke="#6EE7A8" stroke-width="16" stroke-linecap="round"/>
   <path d="M424 642L512 598L642 642L544 704L424 642Z" fill="#8FB1C7"/>
-  <text x="72" y="116" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="700">Neon Drift</text>
-  <text x="76" y="170" fill="#9AA79D" font-family="Consolas, monospace" font-size="26">student project placeholder</text>
 </svg>

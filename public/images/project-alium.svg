@@ -7,6 +7,4 @@
   <circle cx="626" cy="324" r="42" fill="#D8B45F"/>
   <circle cx="1030" cy="350" r="34" fill="#8FB1C7"/>
   <circle cx="908" cy="676" r="30" fill="#6EE7A8"/>
-  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Alium</text>
-  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">Collaborative student project placeholder</text>
 </svg>

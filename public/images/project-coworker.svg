@@ -10,6 +10,4 @@
   <circle cx="800" cy="668" r="44" fill="#70C67E"/>
   <path d="M800 624V554" stroke="#70C67E" stroke-width="14" stroke-linecap="round"/>
   <path d="M800 712V748" stroke="#70C67E" stroke-width="14" stroke-linecap="round"/>
-  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Coworker</text>
-  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">Idle / active systems experiment placeholder</text>
 </svg>

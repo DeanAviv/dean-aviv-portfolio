@@ -83,7 +83,7 @@ export const site = {
   },
   navItems: [
     { label: "Projects", href: "#projects" },
-    { label: "Code", href: "#code" },
+    { label: "Code Showcase", href: "#code" },
     { label: "My Students", href: "#teaching" },
     { label: "Services", href: "#services" },
     { label: "Contact", href: "#contact" },

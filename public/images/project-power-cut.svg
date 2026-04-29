@@ -8,6 +8,4 @@
   <path d="M830 456L872 372L914 456H830Z" fill="#D8B45F"/>
   <path d="M1222 342L1264 258L1306 342H1222Z" fill="#8FB1C7"/>
   <path d="M96 762H1504" stroke="#6EE7A8" stroke-width="8" stroke-linecap="round" opacity="0.55"/>
-  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Power Cut</text>
-  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">2D platformer game jam placeholder</text>
 </svg>
