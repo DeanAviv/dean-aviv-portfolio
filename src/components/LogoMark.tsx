@@ -4,13 +4,13 @@ import { site } from "@/data/site";
 export function LogoMark() {
   if (site.logo.src) {
     return (
-      <span className="relative block size-10 overflow-hidden rounded-md border border-accent/35 bg-accent/10">
+      <span className="relative block size-12 overflow-hidden rounded-md border border-accent/35 bg-accent/10">
         <Image
           src={site.logo.src}
           alt={site.logo.alt}
           fill
-          className="object-contain p-1.5"
-          sizes="40px"
+          className="object-contain p-1"
+          sizes="48px"
           priority
         />
       </span>

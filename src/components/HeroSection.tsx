@@ -32,33 +32,33 @@ export function HeroSection() {
 
         <div className="relative min-h-[460px] overflow-hidden rounded-lg border border-line bg-panel p-5 shadow-2xl shadow-black/30">
           <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(110,231,168,0.16),transparent_34%),linear-gradient(315deg,rgba(216,180,95,0.08),transparent_40%)]" />
-          <div className="relative flex h-full min-h-[420px] flex-col justify-between rounded-md border border-white/10 bg-black/28 p-5">
-            <div className="flex items-center justify-between border-b border-line pb-4 font-mono text-xs text-muted">
-              <span>{site.heroPanel.fileName}</span>
-              <span className="text-accent">{site.heroPanel.status}</span>
-            </div>
-            <div className="space-y-4 font-mono text-sm leading-7 text-foreground/84">
-              <p>
-                <span className="text-steel">public sealed class</span>{" "}
-                <span className="text-accent">{site.heroPanel.lineOneClass}</span>
+          <div className="relative flex h-full min-h-[420px] flex-col rounded-md border border-white/10 bg-black/28 p-5">
+            <div className="border-b border-line pb-5">
+              <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent">
+                Focus
               </p>
-              <p className="pl-5 text-muted">{site.heroPanel.body}</p>
-              <p>
-                <span className="text-amber">Update</span>() =&gt;{" "}
-                {site.heroPanel.updateLine};
+              <h2 className="mt-3 text-3xl font-semibold text-foreground">
+                {site.heroPanel.title}
+              </h2>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-muted sm:text-base">
+                {site.heroPanel.intro}
               </p>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+
+            <div className="mt-5 grid flex-1 gap-3 sm:grid-cols-2">
               {site.heroPanel.focusItems.map((item) => (
                 <div
-                  key={item}
-                  className="rounded-md border border-line bg-white/[0.035] p-4"
+                  key={item.title}
+                  className="rounded-md border border-line bg-white/[0.035] p-4 transition hover:border-accent/35 hover:bg-white/[0.055]"
                 >
                   <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-                    Focus
+                    Area
                   </p>
-                  <p className="mt-2 text-sm font-semibold text-foreground">
-                    {item}
+                  <p className="mt-2 text-base font-semibold text-foreground">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-muted">
+                    {item.description}
                   </p>
                 </div>
               ))}

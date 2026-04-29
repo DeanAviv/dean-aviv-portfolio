@@ -13,15 +13,33 @@ export const site = {
   heroKicker:
     "Unity development, gameplay systems, technical instruction, and project guidance.",
   heroIntro:
-    "I help build playable experiences, explain complex systems clearly, and guide students and teams through the messy middle between prototype and polished project.",
+    "I build playable systems, explain complex ideas clearly, and help students and teams move from prototype to something that actually works.",
   heroPanel: {
-    fileName: "UNITY_SYSTEMS.cs",
-    status: "PLAY MODE",
-    lineOneClass: "GameLoop",
-    body:
-      "Build mechanics that feel good, tools that save time, and lessons that make complex systems click.",
-    updateLine: "clarity, iteration, craft",
-    focusItems: ["Gameplay", "Mentoring", "Systems"],
+    title: "What I focus on",
+    intro:
+      "Practical work across Unity development, teaching, and systems thinking.",
+    focusItems: [
+      {
+        title: "Research & Learning",
+        description:
+          "Exploring tools, workflows, and technical ideas that improve how games are built.",
+      },
+      {
+        title: "Educational Projects",
+        description:
+          "Building and guiding game projects with clear learning value.",
+      },
+      {
+        title: "Teaching Game Development",
+        description:
+          "Helping students understand Unity, C#, and the thinking behind playable systems.",
+      },
+      {
+        title: "Game Systems",
+        description:
+          "Designing gameplay systems, tools, and architecture that are easier to extend.",
+      },
+    ],
   },
   sections: {
     projects: {
@@ -60,7 +78,7 @@ export const site = {
   navItems: [
     { label: "Projects", href: "#projects" },
     { label: "Code", href: "#code" },
-    { label: "Teaching", href: "#teaching" },
+    { label: "My Students", href: "#teaching" },
     { label: "Services", href: "#services" },
     { label: "Contact", href: "#contact" },
   ],

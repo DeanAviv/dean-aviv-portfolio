@@ -72,30 +72,34 @@ a {
 
 .typing-line {
   display: block;
-  width: 0;
-  max-width: fit-content;
-  overflow: hidden;
+  opacity: 0;
+  transform: translateY(0.18em);
   white-space: nowrap;
-  border-right: 0.08em solid var(--accent);
-  animation:
-    typing 1.2s steps(24, end) forwards,
-    caret 0.8s step-end infinite;
+  animation: hero-line-reveal 520ms ease-out forwards;
+  animation-delay: 200ms;
 }
 
 .typing-line:nth-child(2) {
-  animation-delay: 1.25s;
+  animation-delay: 500ms;
 }
 
 .typing-line:nth-child(3) {
-  animation-delay: 2.5s;
+  animation-delay: 800ms;
 }
 
-@keyframes typing {
-  from {
-    width: 0;
-  }
+.typing-line:last-child::after {
+  display: inline-block;
+  margin-left: 0.08em;
+  color: var(--accent);
+  content: "|";
+  animation: caret 0.9s step-end infinite;
+  animation-delay: 1.15s;
+}
+
+@keyframes hero-line-reveal {
   to {
-    width: 100%;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -116,6 +120,11 @@ a {
   }
 
   .typing-line {
-    width: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .typing-line:last-child::after {
+    animation: none !important;
   }
 }
