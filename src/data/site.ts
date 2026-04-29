@@ -2,7 +2,7 @@ export const site = {
   name: "Dean Aviv",
   role: "Unity Developer & Instructor",
   location: "Israel",
-  email: "hello@deanaviv.dev",
+  email: "deanaviv5@gmail.com",
   logo: {
     src: "/images/brand/logo-da.svg",
     pngFallback: "/images/brand/logo-da.png",
@@ -10,10 +10,9 @@ export const site = {
     fallbackText: "DA",
   },
   heroLines: ["I build games.", "I teach developers.", "I design systems."],
-  heroKicker:
-    "Unity development, gameplay systems, technical instruction, and project guidance.",
+  heroKicker: "Hey, I'm Dean, a game developer and instructor.",
   heroIntro:
-    "I build playable systems, explain complex ideas clearly, and help students and teams move from prototype to something that actually works.",
+    "I build systems that work, teach how they're built, and help students and teams move from prototype to something real. My background is rooted in Unity, but I enjoy exploring new tools, engines, and approaches to keep learning and expanding how I build.",
   focus: {
     title: "What I focus on",
     intro:
@@ -84,13 +83,13 @@ export const site = {
   },
   navItems: [
     { label: "Projects", href: "#projects" },
-    { label: "Code", href: "#code" },
+    { label: "Code Showcase", href: "#code" },
     { label: "My Students", href: "#teaching" },
     { label: "Services", href: "#services" },
     { label: "Contact", href: "#contact" },
   ],
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
-    { label: "GitHub", href: "https://github.com/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/dean-aviv/" },
+    { label: "GitHub", href: "https://github.com/DeanAviv" },
   ],
 };

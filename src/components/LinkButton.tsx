@@ -19,7 +19,7 @@ export function LinkButton({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-11 items-center justify-center rounded-md border px-5 py-2.5 text-sm font-semibold transition ${className}`}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-md border px-5 py-2.5 text-sm font-semibold transition sm:w-auto ${className}`}
     >
       {children}
     </Link>

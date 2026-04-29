@@ -9,6 +9,4 @@
   <path d="M470 570H930" stroke="#8FB1C7" stroke-width="22" stroke-linecap="round"/>
   <path d="M470 666H1038" stroke="#D8B45F" stroke-width="22" stroke-linecap="round"/>
   <path d="M1114 430L1218 518L1114 606" stroke="#6EE7A8" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">APK Installer</text>
-  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">Windows tool / ADB workflow placeholder</text>
 </svg>

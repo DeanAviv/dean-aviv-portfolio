@@ -57,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-accent transition hover:text-accent-strong"
+                  className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 underline decoration-line/40 underline-offset-4 transition hover:text-foreground group-hover/link:text-foreground"
                 >
                   {link.label}
                 </Link>
