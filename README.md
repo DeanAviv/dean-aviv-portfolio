@@ -89,25 +89,49 @@ image, update the matching `image` field in `src/data/projects.ts` or
 
 ## Add A New Project
 
-Open `src/data/projects.ts` and add a new item:
+Open `src/data/projects.ts`. Main experience cards live in `mainProjects`;
+smaller supporting work lives in `additionalProjects` and appears in the
+horizontal carousel.
+
+Main project shape:
 
 ```ts
 {
   title: "Project Name",
   role: "Gameplay Programmer",
-  company: "Client or Studio Name",
+  context: "Client, studio, or project type",
   description: "Short card description.",
-  extendedDescription: "A little more context about the work and decisions.",
+  extendedDescription: [
+    "A little more context about the work and decisions.",
+    "Add another paragraph if the project needs more explanation.",
+  ],
   tags: ["Unity", "C#", "Gameplay Systems"],
   image: "/images/project-name.svg",
-  projectLink: "https://example.com",
-  caseStudyLink: "/case-studies/project-name",
-  isFeatured: true,
+  links: [
+    {
+      label: "Official website ↗",
+      href: "https://example.com/",
+    },
+  ],
 }
 ```
 
-`company`, `projectLink`, and `caseStudyLink` are optional. If a link is missing,
-its button is hidden.
+Project links open in a new tab and should use labels, not raw URLs.
+
+Additional project shape:
+
+```ts
+{
+  title: "Small Project",
+  category: "Game Jam / Solo Project",
+  description: "Short card description.",
+  extendedDescription: [
+    "A little more detail about what the project explores.",
+  ],
+  tags: ["Unity", "Gameplay"],
+  image: "/images/project-small.svg",
+}
+```
 
 ## Add Student Links
 
@@ -153,30 +177,24 @@ Open `src/data/codeShowcases.ts` and add a new object:
 
 ```ts
 {
-  id: "signals",
-  title: "Zenject Signals",
-  summary: "Short overview of what this code demonstrates.",
-  technologies: ["Unity", "C#", "Zenject"],
-  files: [
-    {
-      fileName: "SignalExample.cs",
-      language: "csharp",
-      code: `public readonly struct SignalExample { }`,
-    },
+  title: "Sequence Manager",
+  description: "Short overview of what this system demonstrates.",
+  keyIdeas: [
+    "Clean sequencing logic",
+    "Reusable system design",
   ],
-  explanation: {
-    title: "What Dean would walk through",
-    points: [
-      "Explain the design decision.",
-      "Explain how it stays maintainable.",
-    ],
-  },
+  technologies: ["C#", "Unity"],
+  codeSnippet: `public void Example()
+{
+    // Keep snippets short and teachable.
+}`,
   whyThisMatters: "Explain why this pattern helps a real project.",
+  githubUrl: "https://github.com/DeanAviv/example",
 }
 ```
 
-The code showcase component automatically creates the showcase tabs and file
-tabs from this data.
+Keep code snippets short, focused, and easy to explain. The code showcase
+component renders each object as a curated system card with a GitHub link.
 
 ## Deploy Later To Vercel
 

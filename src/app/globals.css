@@ -70,6 +70,15 @@ a {
   background: var(--accent);
 }
 
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .typing-line {
   display: block;
   opacity: 0;

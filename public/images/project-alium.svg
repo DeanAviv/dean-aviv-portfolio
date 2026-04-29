@@ -1,0 +1,12 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#080B0A"/>
+  <path d="M0 760C210 650 430 720 620 590C820 454 994 330 1600 410V1000H0V760Z" fill="#111A15"/>
+  <circle cx="792" cy="474" r="170" fill="#142219" stroke="#6EE7A8" stroke-width="12"/>
+  <path d="M674 528C722 448 770 408 818 408C866 408 914 448 962 528" stroke="#F3F7F2" stroke-width="20" stroke-linecap="round"/>
+  <path d="M648 592H988" stroke="#70C67E" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="626" cy="324" r="42" fill="#D8B45F"/>
+  <circle cx="1030" cy="350" r="34" fill="#8FB1C7"/>
+  <circle cx="908" cy="676" r="30" fill="#6EE7A8"/>
+  <text x="96" y="136" fill="#F3F7F2" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Alium</text>
+  <text x="100" y="204" fill="#9AA79D" font-family="Consolas, monospace" font-size="30">Collaborative student project placeholder</text>
+</svg>

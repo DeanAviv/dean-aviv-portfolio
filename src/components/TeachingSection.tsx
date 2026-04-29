@@ -1,5 +1,5 @@
 import { SectionHeader } from "@/components/SectionHeader";
-import { StudentProjectCard } from "@/components/StudentProjectCard";
+import { StudentProjectsCarousel } from "@/components/StudentProjectsCarousel";
 import { site } from "@/data/site";
 import { studentProjects } from "@/data/studentProjects";
 
@@ -17,11 +17,7 @@ export function TeachingSection() {
           {site.sections.teaching.note}
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {studentProjects.map((project) => (
-            <StudentProjectCard key={project.title} project={project} />
-          ))}
-        </div>
+        <StudentProjectsCarousel projects={studentProjects} />
       </div>
     </section>
   );

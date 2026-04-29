@@ -1,194 +1,118 @@
 export type CodeShowcaseFile = {
   fileName: string;
-  language: string;
   code: string;
 };
 
 export type CodeShowcaseItem = {
   id: string;
   title: string;
-  summary: string;
+  description: string;
+  keyIdeas: string[];
   technologies: string[];
   files: CodeShowcaseFile[];
-  explanation: {
-    title: string;
-    points: string[];
-  };
+  explanationTitle: string;
   whyThisMatters: string;
+  githubUrl: string;
 };
 
 export const codeShowcases: CodeShowcaseItem[] = [
   {
     id: "inventory-system",
     title: "Inventory System",
-    summary:
-      "A compact gameplay system with a small public API, item definitions, and events for UI or feedback layers.",
+    description:
+      "A compact inventory flow built around explicit actions, predictable state changes, and UI-friendly events.",
+    keyIdeas: [
+      "Keep inventory mutations behind a small public API.",
+      "Let UI react through events instead of owning inventory rules.",
+      "Make stacking behavior obvious before adding more item complexity.",
+    ],
     technologies: ["Unity", "C#", "Gameplay Systems", "ScriptableObjects"],
     files: [
       {
         fileName: "InventoryManager.cs",
-        language: "csharp",
-        code: `using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-public sealed class InventoryManager : MonoBehaviour
+        code: `public bool TryAdd(ItemDefinition item, int amount)
 {
-    public event Action<ItemStack> ItemAdded;
-    public event Action<ItemStack> ItemRemoved;
+    if (item == null || amount <= 0) return false;
 
-    [SerializeField] private int maxSlots = 24;
-    private readonly List<ItemStack> items = new();
-
-    public bool TryAdd(ItemDefinition item, int amount)
-    {
-        if (item == null || amount <= 0) return false;
-        if (items.Count >= maxSlots && !Contains(item)) return false;
-
-        ItemStack stack = FindOrCreateStack(item);
-        stack.Add(amount);
-        ItemAdded?.Invoke(stack);
-        return true;
-    }
-
-    public bool TryRemove(ItemDefinition item, int amount)
-    {
-        ItemStack stack = items.Find(entry => entry.Item == item);
-        if (stack == null || stack.Amount < amount) return false;
-
-        stack.Remove(amount);
-        if (stack.Amount == 0) items.Remove(stack);
-        ItemRemoved?.Invoke(stack);
-        return true;
-    }
-
-    private bool Contains(ItemDefinition item) =>
-        items.Exists(entry => entry.Item == item);
-
-    private ItemStack FindOrCreateStack(ItemDefinition item)
-    {
-        ItemStack stack = items.Find(entry => entry.Item == item);
-        if (stack != null) return stack;
-
-        stack = new ItemStack(item);
-        items.Add(stack);
-        return stack;
-    }
+    ItemStack stack = FindOrCreateStack(item);
+    stack.Add(amount);
+    ItemAdded?.Invoke(stack);
+    return true;
 }`,
       },
       {
         fileName: "ItemDefinition.cs",
-        language: "csharp",
-        code: `using UnityEngine;
-
-[CreateAssetMenu(menuName = "Game/Inventory/Item")]
+        code: `[CreateAssetMenu(menuName = "Game/Inventory/Item")]
 public sealed class ItemDefinition : ScriptableObject
 {
     [field: SerializeField] public string DisplayName { get; private set; }
-    [field: SerializeField] public Sprite Icon { get; private set; }
     [field: SerializeField] public bool IsStackable { get; private set; } = true;
 }`,
       },
     ],
-    explanation: {
-      title: "What Dean would walk through",
-      points: [
-        "Why TryAdd and TryRemove are easier to teach and test than open-ended mutation.",
-        "How events let UI, audio, and quests react without living inside inventory code.",
-        "Where this simple version should stop, and what belongs in save data or item rules later.",
-      ],
-    },
+    explanationTitle: "What this system shows",
     whyThisMatters:
-      "Inventory code gets messy fast when every system reaches into it. Clear boundaries make the feature easier to debug, teach, and extend.",
+      "This is how I usually approach inventory logic: a narrow API, clear ownership, and enough separation that UI and gameplay systems do not start pulling against each other.",
+    githubUrl: "https://github.com/DeanAviv/unity-sequence-manager",
   },
   {
-    id: "scriptableobject-variables",
-    title: "ScriptableObject Variables",
-    summary:
-      "A lightweight shared-value pattern for designer-friendly tuning and UI binding without hard references everywhere.",
+    id: "scriptableobject-patterns",
+    title: "ScriptableObject Patterns",
+    description:
+      "Shared-value and data patterns that make tuning easier without burying gameplay logic inside inspectors.",
+    keyIdeas: [
+      "Use ScriptableObjects to expose data cleanly, not to hide architecture.",
+      "Reset runtime values deliberately so Play Mode stays predictable.",
+      "Keep observer-style UI updates simple and visible.",
+    ],
     technologies: ["Unity", "C#", "ScriptableObjects", "Editor Workflow"],
     files: [
       {
         fileName: "FloatVariable.cs",
-        language: "csharp",
-        code: `using System;
-using UnityEngine;
-
-[CreateAssetMenu(menuName = "Game/Variables/Float")]
-public sealed class FloatVariable : ScriptableObject
+        code: `public float Value
 {
-    public event Action<float> Changed;
-
-    [SerializeField] private float defaultValue;
-    private float runtimeValue;
-
-    public float Value
+    get => runtimeValue;
+    set
     {
-        get => runtimeValue;
-        set
-        {
-            if (Mathf.Approximately(runtimeValue, value)) return;
-            runtimeValue = value;
-            Changed?.Invoke(runtimeValue);
-        }
-    }
-
-    private void OnEnable()
-    {
-        runtimeValue = defaultValue;
+        if (Mathf.Approximately(runtimeValue, value)) return;
+        runtimeValue = value;
+        Changed?.Invoke(runtimeValue);
     }
 }`,
       },
       {
         fileName: "VariableLabel.cs",
-        language: "csharp",
-        code: `using TMPro;
-using UnityEngine;
-
-public sealed class VariableLabel : MonoBehaviour
+        code: `private void OnEnable()
 {
-    [SerializeField] private FloatVariable source;
-    [SerializeField] private TMP_Text label;
+    source.Changed += Refresh;
+    Refresh(source.Value);
+}
 
-    private void OnEnable()
-    {
-        source.Changed += Refresh;
-        Refresh(source.Value);
-    }
-
-    private void OnDisable()
-    {
-        source.Changed -= Refresh;
-    }
-
-    private void Refresh(float value)
-    {
-        label.text = Mathf.RoundToInt(value).ToString();
-    }
+private void Refresh(float value)
+{
+    label.text = Mathf.RoundToInt(value).ToString();
 }`,
       },
     ],
-    explanation: {
-      title: "What Dean would walk through",
-      points: [
-        "How ScriptableObjects can make values visible and editable without building a large framework.",
-        "Why runtime reset matters when entering and exiting Play Mode.",
-        "How UI can observe data without owning the gameplay system.",
-      ],
-    },
+    explanationTitle: "What this system shows",
     whyThisMatters:
-      "Students often learn faster when they can see data move. This pattern makes state visible while keeping the lesson grounded in real Unity tradeoffs.",
+      "I like patterns like this when they make the project easier to tune and teach. The goal is not a clever framework. The goal is data that stays understandable while the game grows.",
+    githubUrl: "https://github.com/DeanAviv/unity-card-deck-toolkit",
   },
   {
-    id: "zenject-signals",
-    title: "Zenject Signals",
-    summary:
-      "A signal-based example for keeping gameplay systems, UI, and feedback separated while still communicating clearly.",
+    id: "event-driven-systems-zenject",
+    title: "Event-Driven Systems (Zenject)",
+    description:
+      "A signal-driven example for connecting gameplay, UI, and feedback without turning everything into direct references.",
+    keyIdeas: [
+      "Signals help when the event boundary is clear and intentional.",
+      "Payloads should stay small so debugging remains practical.",
+      "Event-driven code still needs readable flow, not magic.",
+    ],
     technologies: ["Unity", "C#", "Zenject", "Signals"],
     files: [
       {
         fileName: "PlayerDamagedSignal.cs",
-        language: "csharp",
         code: `public readonly struct PlayerDamagedSignal
 {
     public int Amount { get; }
@@ -203,84 +127,50 @@ public sealed class VariableLabel : MonoBehaviour
       },
       {
         fileName: "HealthPresenter.cs",
-        language: "csharp",
-        code: `using UnityEngine;
-using Zenject;
-
-public sealed class HealthPresenter : MonoBehaviour
+        code: `private void OnEnable()
 {
-    [Inject] private SignalBus signalBus;
+    signalBus.Subscribe<PlayerDamagedSignal>(OnPlayerDamaged);
+}
 
-    private void OnEnable()
-    {
-        signalBus.Subscribe<PlayerDamagedSignal>(OnPlayerDamaged);
-    }
-
-    private void OnDisable()
-    {
-        signalBus.Unsubscribe<PlayerDamagedSignal>(OnPlayerDamaged);
-    }
-
-    private void OnPlayerDamaged(PlayerDamagedSignal signal)
-    {
-        Debug.Log($"Player took {signal.Amount} damage from {signal.SourceId}");
-    }
+private void OnPlayerDamaged(PlayerDamagedSignal signal)
+{
+    Debug.Log($"Player took {signal.Amount} damage from {signal.SourceId}");
 }`,
       },
     ],
-    explanation: {
-      title: "What Dean would walk through",
-      points: [
-        "When signals help and when they hide too much flow.",
-        "Why payloads should be small, explicit, and boring in the best way.",
-        "How to keep subscriptions predictable so debugging remains possible.",
-      ],
-    },
+    explanationTitle: "What this system shows",
     whyThisMatters:
-      "Architecture is only useful if the team can still follow the story of what happened. Signals need discipline, not mystery.",
+      "When I use event-driven architecture, I want the benefits of decoupling without losing the ability to explain what happened. Signals are useful only if the team can still follow the story.",
+    githubUrl: "https://github.com/DeanAviv/unity-turn-base-toolkit",
   },
   {
-    id: "localization-region-locale",
-    title: "Localization / Region-Locale System",
-    summary:
-      "A small region-locale resolver that keeps content selection explicit for multilingual or region-aware Unity projects.",
+    id: "localization-architecture",
+    title: "Localization Architecture",
+    description:
+      "A region-locale approach that keeps content decisions explicit instead of scattering them across UI code.",
+    keyIdeas: [
+      "Locale rules should be visible before content bugs reach production.",
+      "Fallback logic deserves to be deliberate, not assumed.",
+      "Localization architecture is part UX, part systems design.",
+    ],
     technologies: ["Unity", "C#", "Localization", "Content Systems"],
     files: [
       {
         fileName: "LocaleResolver.cs",
-        language: "csharp",
-        code: `using System.Globalization;
-
-public sealed class LocaleResolver
+        code: `public string Resolve(string regionCode, string preferredLanguage)
 {
-    private readonly string fallbackLocale;
-
-    public LocaleResolver(string fallbackLocale = "en-US")
+    if (string.IsNullOrWhiteSpace(preferredLanguage))
     {
-        this.fallbackLocale = fallbackLocale;
+        return fallbackLocale;
     }
 
-    public string Resolve(string regionCode, string preferredLanguage)
-    {
-        if (string.IsNullOrWhiteSpace(preferredLanguage))
-        {
-            return fallbackLocale;
-        }
-
-        string normalizedRegion = regionCode?.ToUpperInvariant() ?? "US";
-        string normalizedLanguage = preferredLanguage.ToLowerInvariant();
-        string candidate = $"{normalizedLanguage}-{normalizedRegion}";
-
-        return CultureInfo.GetCultureInfo(candidate).Name;
-    }
+    string candidate = $"{preferredLanguage.ToLowerInvariant()}-{regionCode?.ToUpperInvariant() ?? "US"}";
+    return CultureInfo.GetCultureInfo(candidate).Name;
 }`,
       },
       {
         fileName: "LocalizedTextKey.cs",
-        language: "csharp",
-        code: `using UnityEngine;
-
-[CreateAssetMenu(menuName = "Game/Localization/Text Key")]
+        code: `[CreateAssetMenu(menuName = "Game/Localization/Text Key")]
 public sealed class LocalizedTextKey : ScriptableObject
 {
     [field: SerializeField] public string Key { get; private set; }
@@ -289,56 +179,45 @@ public sealed class LocalizedTextKey : ScriptableObject
 }`,
       },
     ],
-    explanation: {
-      title: "What Dean would walk through",
-      points: [
-        "Why locale decisions should be visible instead of scattered through UI screens.",
-        "How fallback rules prevent missing content from becoming a runtime surprise.",
-        "Where Unity Localization packages fit once the project grows.",
-      ],
-    },
+    explanationTitle: "What this system shows",
     whyThisMatters:
-      "Localization is not just text replacement. Region and language rules touch UX, testing, and production planning.",
+      "I think about localization as a behavior problem, not just a text problem. Region and language rules need structure early, otherwise every future screen pays the price.",
+    githubUrl: "https://github.com/DeanAviv/unity-card-deck-toolkit",
   },
   {
     id: "unity-tooling",
     title: "Unity Tooling",
-    summary:
-      "An editor utility example that turns a repeated production task into a deliberate, documented workflow.",
+    description:
+      "Small editor tooling that removes repeated friction and turns production chores into deliberate workflow.",
+    keyIdeas: [
+      "A good tool saves attention, not just clicks.",
+      "Tool output should be readable for the next developer too.",
+      "Workflow fixes are often as valuable as feature work.",
+    ],
     technologies: ["Unity", "C#", "Editor Tools", "Workflow"],
     files: [
       {
-        fileName: "BuildSceneValidator.cs",
-        language: "csharp",
-        code: `using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-
-public static class BuildSceneValidator
+        fileName: "ScreenshotTool.cs",
+        code: `[MenuItem("Tools/Capture Screenshot")]
+public static void Capture()
 {
-    [MenuItem("Tools/Validate Build Scenes")]
-    public static void Validate()
-    {
-        foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
-        {
-            if (!scene.enabled) continue;
+    ScreenCapture.CaptureScreenshot("screenshot.png");
+}`,
+      },
+      {
+        fileName: "BuildSceneValidator.cs",
+        code: `foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+{
+    if (!scene.enabled) continue;
 
-            var openedScene = EditorSceneManager.OpenScene(scene.path);
-            Debug.Log($"Validated scene: {openedScene.name}");
-        }
-    }
+    var openedScene = EditorSceneManager.OpenScene(scene.path);
+    Debug.Log($"Validated scene: {openedScene.name}");
 }`,
       },
     ],
-    explanation: {
-      title: "What Dean would walk through",
-      points: [
-        "How small editor tools save attention during production.",
-        "Why tool output should be readable for the next developer, not just the author.",
-        "What checks belong in editor validation before they become build-time pain.",
-      ],
-    },
+    explanationTitle: "What this system shows",
     whyThisMatters:
-      "Good tooling is a kindness to the future version of the team. It catches repeat problems before they become rituals.",
+      "Not every useful system is player-facing. I build editor tools when they reduce noise, help the team move faster, and make routine work easier to trust.",
+    githubUrl: "https://github.com/DeanAviv/unity-screenshot-tool",
   },
 ];

@@ -14,20 +14,20 @@ export const site = {
     "Unity development, gameplay systems, technical instruction, and project guidance.",
   heroIntro:
     "I build playable systems, explain complex ideas clearly, and help students and teams move from prototype to something that actually works.",
-  heroPanel: {
+  focus: {
     title: "What I focus on",
     intro:
-      "Practical work across Unity development, teaching, and systems thinking.",
-    focusItems: [
+      "A practical mix of Unity development, teaching, research, and systems thinking.",
+    items: [
       {
         title: "Research & Learning",
         description:
-          "Exploring tools, workflows, and technical ideas that improve how games are built.",
+          "Exploring tools, workflows, and technical ideas that improve how games are built and taught.",
       },
       {
         title: "Educational Projects",
         description:
-          "Building and guiding game projects with clear learning value.",
+          "Building and guiding game projects with clear learning value and practical outcomes.",
       },
       {
         title: "Teaching Game Development",
@@ -35,24 +35,31 @@ export const site = {
           "Helping students understand Unity, C#, and the thinking behind playable systems.",
       },
       {
-        title: "Game Systems",
+        title: "Gameplay Systems",
         description:
-          "Designing gameplay systems, tools, and architecture that are easier to extend.",
+          "Designing gameplay systems, tools, and architecture that are easier to extend, debug, and maintain.",
       },
     ],
   },
   sections: {
     projects: {
       eyebrow: "Featured Projects",
-      title: "Unity work, tools, and focused game experiments.",
+      title: "Projects I’ve built, shipped, and learned from.",
       description:
-        "A snapshot of production work, cross-platform development, technical tools, and game jam projects.",
+        "From production systems to small experiments, these projects reflect how I build, think, and solve problems.",
+    },
+    additionalProjects: {
+      title: "More things I’ve built",
+      description:
+        "Game jams, solo experiments, tools, and smaller projects that show how I explore ideas and build practical systems.",
     },
     code: {
       eyebrow: "Code Showcase",
-      title: "Readable systems. Practical architecture.",
+      title: "Code I can explain",
       description:
-        "Examples of the kind of Unity code Dean can build, review, explain, and teach without turning architecture into theater.",
+        "Readable systems, practical tools, and examples I can walk through and teach.",
+      intro:
+        "I focus on building systems that are clear, flexible, and easy to extend — and even easier to explain.",
     },
     teaching: {
       eyebrow: "Teaching & Student Work",

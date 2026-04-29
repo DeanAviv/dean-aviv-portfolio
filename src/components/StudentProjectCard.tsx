@@ -15,7 +15,7 @@ export function StudentProjectCard({ project }: StudentProjectCardProps) {
   ].filter((link): link is { label: string; href: string } => Boolean(link.href));
 
   return (
-    <article className="overflow-hidden rounded-lg border border-line bg-panel transition hover:border-accent/45 hover:bg-panel-strong">
+    <article className="h-full overflow-hidden rounded-lg border border-line bg-panel transition hover:border-accent/45 hover:bg-panel-strong">
       <div className="relative aspect-[4/3] border-b border-line bg-black/30">
         <Image
           src={project.image}

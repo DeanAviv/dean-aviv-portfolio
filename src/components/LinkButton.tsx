@@ -13,7 +13,7 @@ export function LinkButton({
 }: LinkButtonProps) {
   const className =
     variant === "primary"
-      ? "border-accent/60 bg-accent text-[#06100a] hover:bg-accent-strong"
+      ? "border-accent/60 bg-accent text-gray-950 hover:bg-accent-strong"
       : "border-line bg-white/[0.03] text-foreground hover:border-accent/50 hover:bg-white/[0.06]";
 
   return (
