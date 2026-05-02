@@ -21,6 +21,7 @@ export type AdditionalProject = {
   extendedDescription: string[];
   tags: string[];
   image: string;
+  links?: ProjectLink[];
 };
 
 export const mainProjects: MainProject[] = [
@@ -56,7 +57,7 @@ export const mainProjects: MainProject[] = [
   {
     title: "Work at Zbenko Studio",
     role: "Unity Developer",
-    context: "Ouro, Atlas-Kazai, APIs, and educational game systems",
+    context: "APIs, internal systems, and educational game development",
     description:
       "Technical work across educational game products, classroom experiences, Unity systems, APIs, and internal tools.",
     extendedDescription: [
@@ -118,50 +119,52 @@ export const mainProjects: MainProject[] = [
 
 export const additionalProjects: AdditionalProject[] = [
   {
-    title: "Alium",
+    title: "Allium",
     category: "Collaborative Project",
     description:
-      "Collaborative student project I contributed to during development.",
+      "A graduation project from Bezalel Academy, where I provided development support and helped bring the core systems to life.",
     extendedDescription: [
-      "I was involved in parts of the gameplay and technical implementation, working alongside a team to help bring the project to life.",
-      "This project reflects collaboration, iteration, and supporting a larger creative vision.",
+      "My work focused on building UI systems around zooming interactions, enabling smooth transitions between different scales of the experience.",
     ],
     tags: ["Unity", "Gameplay", "Collaboration"],
     image: "/images/projects/alium.png",
-  },
-  {
-    title: "Android APK Installer",
-    category: "Tooling",
-    description:
-      "A Windows utility for installing APK files to Android devices through ADB.",
-    extendedDescription: [
-      "A practical tool built to simplify Android APK installation workflows. The project reflects my interest in developer tools, workflow improvement, and C# desktop development.",
+    links: [
+      {
+        label: "Itch.io page",
+        href: "https://noalev.itch.io/allium",
+      },
+      {
+        label: "Creator: Noa Lev",
+        href: "https://noalev.itch.io/",
+      },
     ],
-    tags: ["C#", "WPF", "ADB", "Tooling"],
-    image: "/images/project-apk-installer.svg",
   },
   {
     title: "Power Cut",
     category: "Game Jam / Solo Project",
     description:
-      "A game jam project about surviving a power outage using charge-based mechanics.",
+      "A game jam project built over a single weekend, where I handled the full development — design, visuals, and code.",
     extendedDescription: [
-      "Designed and built as a solo project, with full ownership over game design and implementation.",
-      "The project explores resource management, tension, and a focused 2D gameplay loop.",
+      "PowerCut is a hand-drawn experience focused on atmosphere and moment-to-moment gameplay, created under tight constraints and rapid iteration.",
     ],
     tags: ["Unity", "2D", "Game Jam", "Solo Project", "Game Design"],
-    image: "/images/project-power-cut.svg",
+    image: "/images/projects/powercut.jpeg",
+    links: [
+      {
+        label: "Itch.io page",
+        href: "https://deanaviv.itch.io/power-cut",
+      },
+    ],
   },
   {
     title: "Coworker",
     category: "Solo Experiment",
     description:
-      "An experimental solo project exploring idle and active gameplay loops alongside the user’s workflow.",
+      "An ongoing project that started as an experimental systems prototype and evolved into a full game in development.",
     extendedDescription: [
-      "Designed as a hybrid between idle, clicker, and system-driven gameplay, focusing on interaction patterns and player engagement over time.",
-      "This project reflects experimentation with systems, feedback loops, and player behavior.",
+      "Currently expanding into a hybrid Roguelike, Arcade, and Clicker experience, with a strong focus on systems design and progression.",
     ],
-    tags: ["Unity", "Systems", "Solo Project", "Game Design"],
+    tags: ["In development", "Unity", "Systems", "Solo Project", "Game Design"],
     image: "/images/projects/coworker.png",
   },
 ];
