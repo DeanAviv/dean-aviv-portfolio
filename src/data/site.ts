@@ -54,11 +54,9 @@ export const site = {
     },
     code: {
       eyebrow: "Code Showcase",
-      title: "Readable systems, practical tools.",
+      title: "A sneak peek into my systems.",
       description:
-        "A curated look at small Unity systems and tools that reflect how I think about gameplay architecture, reusable code, and developer-facing workflows.",
-      intro:
-        "Each example focuses on code that is easy to read, extend, debug, and explain.",
+        "A curated look at Unity systems and tools that show how I approach gameplay architecture, reusable code, and developer-facing workflows — with examples that are built to be readable, extendable, and easy to explain.",
     },
     teaching: {
       eyebrow: "Teaching & Student Work",
