@@ -54,9 +54,9 @@ export const site = {
     },
     code: {
       eyebrow: "Code Showcase",
-      title: "A sneak peek into my systems.",
+      title: "A sneak peek into how I write code.",
       description:
-        "A curated look at Unity systems and tools that show how I approach gameplay architecture, reusable code, and developer-facing workflows — with examples that are built to be readable, extendable, and easy to explain.",
+        "A curated look at Unity systems and tools that reflect how I think about gameplay architecture, reusable code, and developer-facing workflows.",
     },
     teaching: {
       eyebrow: "Teaching & Student Work",
