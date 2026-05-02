@@ -13,10 +13,6 @@ export function TeachingSection() {
           description={site.sections.teaching.description}
         />
 
-        <div className="mx-auto mt-7 max-w-2xl rounded-lg border border-accent/20 bg-accent/8 p-5 text-center text-sm leading-7 text-foreground/78">
-          {site.sections.teaching.note}
-        </div>
-
         <StudentProjectsCarousel projects={studentProjects} />
       </div>
     </section>
