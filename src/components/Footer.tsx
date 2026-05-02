@@ -23,7 +23,7 @@ export function Footer() {
           <div className="flex flex-wrap gap-3 md:justify-end">
             <Link
               href={site.contact.actions.email.href}
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-accent/60 bg-accent px-5 py-2.5 text-sm font-semibold text-gray-950 transition hover:bg-accent-strong"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-accent/60 bg-accent-strong px-5 py-2.5 text-sm font-semibold text-[#06100a] transition hover:bg-accent"
             >
               {site.contact.actions.email.label}
             </Link>
