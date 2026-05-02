@@ -8,7 +8,7 @@ import { codeShowcases } from "@/data/codeShowcases";
 import { site } from "@/data/site";
 
 const keywordPattern =
-  /\b(public|private|sealed|class|readonly|return|if|new|using|void|bool|int|string|null|true|false|get|set|foreach|static|struct)\b/g;
+  /\b(public|private|sealed|class|readonly|return|if|new|using|void|bool|int|string|null|true|false|get|set|foreach|static|interface|async|await|this)\b/g;
 
 function highlightCode(code: string) {
   return code.split("\n").map((line, lineIndex) => {
@@ -32,12 +32,11 @@ function highlightCode(code: string) {
           keywordPattern.lastIndex = 0;
 
           if (
-            part.includes("Inventory") ||
-            part.includes("Signal") ||
-            part.includes("Locale") ||
-            part.includes("Variable") ||
-            part.includes("Screenshot") ||
-            part.includes("Card")
+            part.includes("Turn") ||
+            part.includes("Sequence") ||
+            part.includes("Card") ||
+            part.includes("Deck") ||
+            part.includes("Discard")
           ) {
             return (
               <span key={`${part}-${partIndex}`} className="text-accent">
@@ -78,11 +77,11 @@ export function CodeShowcase() {
           description={site.sections.code.description}
         />
 
-        {site.sections.code.intro ? (
-          <p className="mx-auto mt-7 max-w-3xl rounded-lg border border-accent/20 bg-accent/8 p-5 text-center text-sm leading-7 text-foreground/78">
-            {site.sections.code.intro}
-          </p>
-        ) : null}
+        <div className="mt-7 flex justify-center">
+          <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-muted">
+            Work in progress
+          </span>
+        </div>
 
         <div className="mt-12 flex flex-wrap justify-center gap-2">
           {codeShowcases.map((item) => (
@@ -130,31 +129,12 @@ export function CodeShowcase() {
             <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent">
               {activeShowcase.title}
             </p>
-            <h3 className="mt-4 text-2xl font-semibold text-foreground">
-              {activeShowcase.explanationTitle}
-            </h3>
+            <h3 className="mt-4 text-2xl font-semibold text-foreground">Key skills</h3>
             <p className="mt-4 leading-7 text-muted">{activeShowcase.description}</p>
-            <ul className="mt-5 space-y-4 text-sm leading-7 text-muted">
-              {activeShowcase.keyIdeas.map((idea) => (
-                <li key={idea} className="flex gap-3">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-                  <span>{idea}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 rounded-md border border-accent/20 bg-accent/8 p-4">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                Why this matters
-              </p>
-              <p className="mt-3 text-sm leading-7 text-foreground/78">
-                {activeShowcase.whyThisMatters}
-              </p>
-            </div>
 
             <div className="mt-7 flex flex-wrap gap-2">
-              {activeShowcase.technologies.map((technology) => (
-                <Tag key={technology}>{technology}</Tag>
+              {activeShowcase.skills.map((skill) => (
+                <Tag key={skill}>{skill}</Tag>
               ))}
             </div>
 
