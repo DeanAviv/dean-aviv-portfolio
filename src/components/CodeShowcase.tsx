@@ -8,7 +8,7 @@ import { codeShowcases } from "@/data/codeShowcases";
 import { site } from "@/data/site";
 
 const keywordPattern =
-  /\b(public|private|sealed|class|readonly|return|if|new|using|void|bool|int|string|null|true|false|get|set|foreach|static|struct)\b/g;
+  /\b(public|private|sealed|class|readonly|return|if|new|using|void|bool|int|string|null|true|false|get|set|foreach|static|struct|interface|async|await)\b/g;
 
 function highlightCode(code: string) {
   return code.split("\n").map((line, lineIndex) => {
@@ -37,7 +37,10 @@ function highlightCode(code: string) {
             part.includes("Locale") ||
             part.includes("Variable") ||
             part.includes("Screenshot") ||
-            part.includes("Card")
+            part.includes("Card") ||
+            part.includes("Turn") ||
+            part.includes("Sequence") ||
+            part.includes("Deck")
           ) {
             return (
               <span key={`${part}-${partIndex}`} className="text-accent">
@@ -83,6 +86,12 @@ export function CodeShowcase() {
             {site.sections.code.intro}
           </p>
         ) : null}
+
+        <div className="mt-5 flex justify-center">
+          <span className="rounded-full border border-line bg-white/[0.03] px-3 py-1 font-mono text-[0.65rem] uppercase tracking-[0.22em] text-muted">
+            Work in progress
+          </span>
+        </div>
 
         <div className="mt-12 flex flex-wrap justify-center gap-2">
           {codeShowcases.map((item) => (
@@ -142,6 +151,17 @@ export function CodeShowcase() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-6 rounded-md border border-line bg-white/[0.03] p-4">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                Suggested scripts
+              </p>
+              <ul className="mt-3 space-y-2 text-sm leading-6 text-foreground/78">
+                {activeShowcase.suggestedScripts.map((script) => (
+                  <li key={script}>{script}</li>
+                ))}
+              </ul>
+            </div>
 
             <div className="mt-6 rounded-md border border-accent/20 bg-accent/8 p-4">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
