@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { AdditionalProject } from "@/data/projects";
 import { Tag } from "./Tag";
 
@@ -37,6 +38,21 @@ export function AdditionalProjectCard({ project }: AdditionalProjectCardProps) {
             ))}
           </div>
         </details>
+        {project.links && project.links.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-4 border-t border-line pt-4">
+            {project.links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-foreground/60 underline decoration-line/40 underline-offset-4 transition hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        ) : null}
         <div className="mt-auto flex flex-wrap gap-2 pt-5">
           {project.tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
