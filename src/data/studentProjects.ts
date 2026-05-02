@@ -5,6 +5,7 @@ export type StudentCredit = {
 
 export type StudentProject = {
   title: string;
+  description: string;
   students: StudentCredit[];
   videoUrl: string;
   embedUrl: string;
@@ -14,6 +15,8 @@ export type StudentProject = {
 export const studentProjects: StudentProject[] = [
   {
     title: "Cheese Pull",
+    description:
+      "A multiplayer graduation project built through extensive independent research, focused on networking, interaction, and responsive game feel — currently preparing for a Steam release.",
     students: [
       {
         name: "Illay Shlomo",
@@ -25,6 +28,8 @@ export const studentProjects: StudentProject[] = [
   },
   {
     title: "SOL 7 Supernova Mk",
+    description:
+      "A solo-developed project built through independent research, exploring physics-based behaviors, movement systems, and reactive gameplay.",
     students: [
       {
         name: "Eitan Kalihman",
@@ -37,6 +42,8 @@ export const studentProjects: StudentProject[] = [
   },
   {
     title: "Dungeon Purge",
+    description:
+      "A team-based graduation project developed over several months, combining Git workflows, asset management, and strategy gameplay with gacha-inspired systems.",
     students: [
       {
         name: "Ron Star (Programmer)",

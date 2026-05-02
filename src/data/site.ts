@@ -62,9 +62,7 @@ export const site = {
       eyebrow: "Teaching & Student Work",
       title: "Wait till you meet my students.",
       description:
-        "I'm proud of every game they build. These projects earned the spotlight.",
-      note:
-        "They did the hard part: making ideas playable, testable, and real. I just helped keep the path lit and the bugs slightly less dramatic.",
+        "I'm proud of every game they build. These projects earned the spotlight.\n\nThey did the hard part: turning ideas into playable, testable experiences. I just helped keep the path clear — and the bugs slightly less dramatic.",
     },
     services: {
       eyebrow: "Services",
