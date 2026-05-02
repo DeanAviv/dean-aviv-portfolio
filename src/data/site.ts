@@ -77,9 +77,22 @@ export const site = {
   },
   contact: {
     eyebrow: "Contact",
-    title: "Let's talk about your game, project, or class.",
-    description:
-      "Available for Unity mentoring, project guidance, technical instruction, and focused consulting.",
+    title: "Let\u2019s talk.",
+    description: [
+      "If you have a project, a question, or just want to connect \u2014 feel free to reach out.",
+      "I\u2019m open to conversations about development, teaching, and collaboration. If it\u2019s a good fit, we\u2019ll take it from there.",
+    ],
+    helperText: "I usually respond within a few days.",
+    actions: {
+      email: {
+        label: "Send me an email",
+        href: "mailto:deanaviv5@gmail.com",
+      },
+      linkedIn: {
+        label: "Connect on LinkedIn",
+        href: "https://www.linkedin.com/in/dean-aviv/",
+      },
+    },
   },
   navItems: [
     { label: "Projects", href: "#projects" },

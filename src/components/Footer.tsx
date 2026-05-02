@@ -12,25 +12,29 @@ export function Footer() {
           <h2 className="mt-4 text-3xl font-semibold text-foreground sm:text-5xl">
             {site.contact.title}
           </h2>
-          <p className="mt-5 max-w-2xl leading-8 text-muted">{site.contact.description}</p>
-          <Link
-            href={`mailto:${site.email}`}
-            className="mt-7 inline-flex text-lg font-semibold text-accent transition hover:text-accent-strong"
-          >
-            {site.email}
-          </Link>
+          <div className="mt-5 max-w-2xl space-y-4 leading-8 text-muted">
+            {site.contact.description.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
 
-        <div className="flex gap-4 md:justify-end">
-          {site.socials.map((social) => (
+        <div className="flex flex-col gap-3 md:items-end md:justify-end">
+          <div className="flex flex-wrap gap-3 md:justify-end">
             <Link
-              key={social.label}
-              href={social.href}
-              className="rounded-md border border-line px-4 py-2 text-sm font-semibold text-foreground transition hover:border-accent/50 hover:bg-accent/10"
+              href={site.contact.actions.email.href}
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-accent/60 bg-accent px-5 py-2.5 text-sm font-semibold text-gray-950 transition hover:bg-accent-strong"
             >
-              {social.label}
+              {site.contact.actions.email.label}
             </Link>
-          ))}
+            <Link
+              href={site.contact.actions.linkedIn.href}
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-line bg-white/[0.03] px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-accent/50 hover:bg-accent/10"
+            >
+              {site.contact.actions.linkedIn.label}
+            </Link>
+          </div>
+          <p className="text-sm leading-6 text-muted">{site.contact.helperText}</p>
         </div>
       </div>
     </footer>
