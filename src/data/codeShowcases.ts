@@ -7,217 +7,208 @@ export type CodeShowcaseItem = {
   id: string;
   title: string;
   description: string;
-  keyIdeas: string[];
-  technologies: string[];
+  skills: string[];
   files: CodeShowcaseFile[];
-  explanationTitle: string;
-  whyThisMatters: string;
   githubUrl: string;
 };
 
 export const codeShowcases: CodeShowcaseItem[] = [
   {
-    id: "inventory-system",
-    title: "Inventory System",
+    id: "turn-based-toolkit",
+    title: "Turn-Based Toolkit",
     description:
-      "A compact inventory flow built around explicit actions, predictable state changes, and UI-friendly events.",
-    keyIdeas: [
-      "Keep inventory mutations behind a small public API.",
-      "Let UI react through events instead of owning inventory rules.",
-      "Make stacking behavior obvious before adding more item complexity.",
+      "A modular Unity architecture for turn-based gameplay, focused on separating turn logic from concrete player and AI controllers.",
+    skills: [
+      "State-driven flow",
+      "Interfaces",
+      "Turn management",
+      "Gameplay architecture",
     ],
-    technologies: ["Unity", "C#", "Gameplay Systems", "ScriptableObjects"],
     files: [
       {
-        fileName: "InventoryManager.cs",
-        code: `public bool TryAdd(ItemDefinition item, int amount)
+        fileName: "GameManager.cs",
+        code: `public sealed class GameManager : MonoBehaviour
 {
-    if (item == null || amount <= 0) return false;
+    [SerializeField] private MonoBehaviour startingController;
+    private ITurnManager turnManager;
 
-    ItemStack stack = FindOrCreateStack(item);
-    stack.Add(amount);
-    ItemAdded?.Invoke(stack);
-    return true;
-}`,
-      },
-      {
-        fileName: "ItemDefinition.cs",
-        code: `[CreateAssetMenu(menuName = "Game/Inventory/Item")]
-public sealed class ItemDefinition : ScriptableObject
-{
-    [field: SerializeField] public string DisplayName { get; private set; }
-    [field: SerializeField] public bool IsStackable { get; private set; } = true;
-}`,
-      },
-    ],
-    explanationTitle: "What this system shows",
-    whyThisMatters:
-      "This is how I usually approach inventory logic: a narrow API, clear ownership, and enough separation that UI and gameplay systems do not start pulling against each other.",
-    githubUrl: "https://github.com/DeanAviv/unity-sequence-manager",
-  },
-  {
-    id: "scriptableobject-patterns",
-    title: "ScriptableObject Patterns",
-    description:
-      "Shared-value and data patterns that make tuning easier without burying gameplay logic inside inspectors.",
-    keyIdeas: [
-      "Use ScriptableObjects to expose data cleanly, not to hide architecture.",
-      "Reset runtime values deliberately so Play Mode stays predictable.",
-      "Keep observer-style UI updates simple and visible.",
-    ],
-    technologies: ["Unity", "C#", "ScriptableObjects", "Editor Workflow"],
-    files: [
-      {
-        fileName: "FloatVariable.cs",
-        code: `public float Value
-{
-    get => runtimeValue;
-    set
+    [Inject]
+    public void Construct(ITurnManager turnManager)
     {
-        if (Mathf.Approximately(runtimeValue, value)) return;
-        runtimeValue = value;
-        Changed?.Invoke(runtimeValue);
+        this.turnManager = turnManager;
+    }
+
+    private void Start()
+    {
+        turnManager.BeginTurn(startingController as IPlayTurn);
     }
 }`,
       },
       {
-        fileName: "VariableLabel.cs",
-        code: `private void OnEnable()
+        fileName: "IPlayTurn.cs",
+        code: `public interface IPlayTurn
 {
-    source.Changed += Refresh;
-    Refresh(source.Value);
-}
+    bool IsTurnComplete { get; }
 
-private void Refresh(float value)
-{
-    label.text = Mathf.RoundToInt(value).ToString();
-}`,
-      },
-    ],
-    explanationTitle: "What this system shows",
-    whyThisMatters:
-      "I like patterns like this when they make the project easier to tune and teach. The goal is not a clever framework. The goal is data that stays understandable while the game grows.",
-    githubUrl: "https://github.com/DeanAviv/unity-card-deck-toolkit",
-  },
-  {
-    id: "event-driven-systems-zenject",
-    title: "Event-Driven Systems (Zenject)",
-    description:
-      "A signal-driven example for connecting gameplay, UI, and feedback without turning everything into direct references.",
-    keyIdeas: [
-      "Signals help when the event boundary is clear and intentional.",
-      "Payloads should stay small so debugging remains practical.",
-      "Event-driven code still needs readable flow, not magic.",
-    ],
-    technologies: ["Unity", "C#", "Zenject", "Signals"],
-    files: [
-      {
-        fileName: "PlayerDamagedSignal.cs",
-        code: `public readonly struct PlayerDamagedSignal
-{
-    public int Amount { get; }
-    public string SourceId { get; }
-
-    public PlayerDamagedSignal(int amount, string sourceId)
-    {
-        Amount = amount;
-        SourceId = sourceId;
-    }
+    void BeginTurn();
+    void TickTurn();
+    void EndTurn();
 }`,
       },
       {
-        fileName: "HealthPresenter.cs",
-        code: `private void OnEnable()
+        fileName: "ITurnManager.cs",
+        code: `public interface ITurnManager
 {
-    signalBus.Subscribe<PlayerDamagedSignal>(OnPlayerDamaged);
-}
+    IPlayTurn ActiveTurn { get; }
 
-private void OnPlayerDamaged(PlayerDamagedSignal signal)
-{
-    Debug.Log($"Player took {signal.Amount} damage from {signal.SourceId}");
+    void BeginTurn(IPlayTurn nextTurn);
+    void CompleteActiveTurn();
 }`,
       },
     ],
-    explanationTitle: "What this system shows",
-    whyThisMatters:
-      "When I use event-driven architecture, I want the benefits of decoupling without losing the ability to explain what happened. Signals are useful only if the team can still follow the story.",
     githubUrl: "https://github.com/DeanAviv/unity-turn-base-toolkit",
   },
   {
-    id: "localization-architecture",
-    title: "Localization Architecture",
+    id: "sequence-manager",
+    title: "Sequence Manager",
     description:
-      "A region-locale approach that keeps content decisions explicit instead of scattering them across UI code.",
-    keyIdeas: [
-      "Locale rules should be visible before content bugs reach production.",
-      "Fallback logic deserves to be deliberate, not assumed.",
-      "Localization architecture is part UX, part systems design.",
+      "A reusable action-sequencing system for Unity, combining interfaces, async execution, dependency injection, and editor-facing workflow.",
+    skills: [
+      "Async / Await",
+      "Interfaces",
+      "Reusable systems",
+      "Dependency Injection",
+      "Editor tooling",
     ],
-    technologies: ["Unity", "C#", "Localization", "Content Systems"],
     files: [
       {
-        fileName: "LocaleResolver.cs",
-        code: `public string Resolve(string regionCode, string preferredLanguage)
+        fileName: "SequenceManager.cs",
+        code: `public sealed class SequenceManager : ISequenceManager
 {
-    if (string.IsNullOrWhiteSpace(preferredLanguage))
+    public async Task PlayAsync(ISequence sequence)
     {
-        return fallbackLocale;
-    }
+        foreach (ISequence step in sequence.Children)
+        {
+            if (!step.CanRun()) continue;
 
-    string candidate = $"{preferredLanguage.ToLowerInvariant()}-{regionCode?.ToUpperInvariant() ?? "US"}";
-    return CultureInfo.GetCultureInfo(candidate).Name;
+            await step.RunAsync();
+        }
+    }
 }`,
       },
       {
-        fileName: "LocalizedTextKey.cs",
-        code: `[CreateAssetMenu(menuName = "Game/Localization/Text Key")]
-public sealed class LocalizedTextKey : ScriptableObject
+        fileName: "ISequence.cs",
+        code: `public interface ISequence
 {
-    [field: SerializeField] public string Key { get; private set; }
-    [field: TextArea]
-    [field: SerializeField] public string DeveloperNote { get; private set; }
+    IReadOnlyList<ISequence> Children { get; }
+
+    bool CanRun();
+    Task RunAsync();
+}`,
+      },
+      {
+        fileName: "ISequenceManager.cs",
+        code: `public interface ISequenceManager
+{
+    bool IsRunning { get; }
+
+    Task PlayAsync(ISequence sequence);
+    void Stop();
+}`,
+      },
+      {
+        fileName: "SequenceEditor.cs",
+        code: `[CustomEditor(typeof(SequenceAsset))]
+public sealed class SequenceEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if (GUILayout.Button("Preview Sequence"))
+        {
+            Debug.Log("Previewing selected sequence.");
+        }
+    }
 }`,
       },
     ],
-    explanationTitle: "What this system shows",
-    whyThisMatters:
-      "I think about localization as a behavior problem, not just a text problem. Region and language rules need structure early, otherwise every future screen pays the price.",
-    githubUrl: "https://github.com/DeanAviv/unity-card-deck-toolkit",
+    githubUrl: "https://github.com/DeanAviv/unity-sequence-manager",
   },
   {
-    id: "unity-tooling",
-    title: "Unity Tooling",
+    id: "card-deck-toolkit",
+    title: "Card Deck Toolkit",
     description:
-      "Small editor tooling that removes repeated friction and turns production chores into deliberate workflow.",
-    keyIdeas: [
-      "A good tool saves attention, not just clicks.",
-      "Tool output should be readable for the next developer too.",
-      "Workflow fixes are often as valuable as feature work.",
+      "A data-driven card deck system built with ScriptableObjects, separating card definitions from runtime deck behavior.",
+    skills: [
+      "ScriptableObjects",
+      "Data-driven design",
+      "Collection management",
+      "Gameplay systems",
     ],
-    technologies: ["Unity", "C#", "Editor Tools", "Workflow"],
     files: [
       {
-        fileName: "ScreenshotTool.cs",
-        code: `[MenuItem("Tools/Capture Screenshot")]
-public static void Capture()
+        fileName: "CardDeck.cs",
+        code: `public sealed class CardDeck
 {
-    ScreenCapture.CaptureScreenshot("screenshot.png");
+    private readonly List<CardData> cards;
+
+    public CardDeck(IEnumerable<CardData> sourceCards)
+    {
+        cards = sourceCards.ToList();
+        Shuffle();
+    }
+
+    public CardData Draw()
+    {
+        CardData card = cards[0];
+        cards.RemoveAt(0);
+        return card;
+    }
 }`,
       },
       {
-        fileName: "BuildSceneValidator.cs",
-        code: `foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+        fileName: "DeckData.cs",
+        code: `[CreateAssetMenu(menuName = "Cards/Deck Data")]
+public sealed class DeckData : ScriptableObject
 {
-    if (!scene.enabled) continue;
+    [field: SerializeField]
+    public List<CardData> StartingCards { get; private set; } = new();
 
-    var openedScene = EditorSceneManager.OpenScene(scene.path);
-    Debug.Log($"Validated scene: {openedScene.name}");
+    public CardDeck CreateRuntimeDeck()
+    {
+        return new CardDeck(StartingCards);
+    }
+}`,
+      },
+      {
+        fileName: "CardData.cs",
+        code: `[CreateAssetMenu(menuName = "Cards/Card Data")]
+public sealed class CardData : ScriptableObject
+{
+    [field: SerializeField] public string DisplayName { get; private set; }
+    [field: SerializeField] public int Cost { get; private set; }
+    [field: TextArea]
+    [field: SerializeField] public string RulesText { get; private set; }
+}`,
+      },
+      {
+        fileName: "DiscardPile.cs",
+        code: `public sealed class DiscardPile
+{
+    private readonly Stack<CardData> cards = new();
+
+    public void Add(CardData card)
+    {
+        if (card == null) return;
+
+        cards.Push(card);
+    }
+
+    public IReadOnlyCollection<CardData> Cards => cards;
 }`,
       },
     ],
-    explanationTitle: "What this system shows",
-    whyThisMatters:
-      "Not every useful system is player-facing. I build editor tools when they reduce noise, help the team move faster, and make routine work easier to trust.",
-    githubUrl: "https://github.com/DeanAviv/unity-screenshot-tool",
+    githubUrl: "https://github.com/DeanAviv/unity-card-deck-toolkit",
   },
 ];

@@ -54,11 +54,9 @@ export const site = {
     },
     code: {
       eyebrow: "Code Showcase",
-      title: "Code I can explain",
+      title: "A sneak peek into how I write code.",
       description:
-        "Readable systems, practical tools, and examples I can walk through and teach.",
-      intro:
-        "I focus on building systems that are clear, flexible, and easy to extend — and even easier to explain.",
+        "A curated look at Unity systems and tools that reflect how I think about gameplay architecture, reusable code, and developer-facing workflows.",
     },
     teaching: {
       eyebrow: "Teaching & Student Work",
