@@ -12,6 +12,7 @@ export function StudentProjectsCarousel({
   projects,
 }: StudentProjectsCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [displayProjects, setDisplayProjects] = useState(projects);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
 
@@ -50,6 +51,23 @@ export function StudentProjectsCarousel({
     };
   }, []);
 
+  useEffect(() => {
+    const shuffleTimeout = window.setTimeout(() => {
+      setDisplayProjects(
+        [...projects]
+          .map((project) => ({ project, order: Math.random() }))
+          .sort((a, b) => a.order - b.order)
+          .map(({ project }) => project),
+      );
+    }, 0);
+
+    return () => window.clearTimeout(shuffleTimeout);
+  }, [projects]);
+
+  useEffect(() => {
+    updateScrollState();
+  }, [displayProjects]);
+
   return (
     <div className="mt-12">
       <div className="mb-5 flex items-center justify-end gap-3">
@@ -87,7 +105,7 @@ export function StudentProjectsCarousel({
           className="scrollbar-hidden flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-3"
           aria-label="Student project carousel"
         >
-          {projects.map((project) => (
+          {displayProjects.map((project) => (
             <div
               key={project.title}
               className="min-w-full snap-start sm:min-w-[calc((100%_-_2.5rem)/3)]"
