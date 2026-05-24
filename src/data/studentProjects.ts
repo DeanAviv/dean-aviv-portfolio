@@ -62,4 +62,17 @@ export const studentProjects: StudentProject[] = [
     embedUrl: "https://www.youtube.com/embed/1UtOGtIv_m0",
     projectUrl: "https://ronstar0.itch.io/dungeon-purge",
   },
+  {
+    title: "The Inspector",
+    description:
+      "A solo-developed semester final project created for a horror games theme. Yagel built an atmospheric experience inspired by Exit 8, drawing from both the game and the movie.",
+    students: [
+      {
+        name: "Yagel Ravid",
+        linkedInUrl: "https://www.linkedin.com/in/yagel-ravid/",
+      },
+    ],
+    videoUrl: "https://www.youtube.com/watch?v=0aUxG23t9Pc",
+    embedUrl: "https://www.youtube.com/embed/0aUxG23t9Pc",
+  },
 ];

@@ -1,5 +1,4 @@
 import { CodeShowcase } from "@/components/CodeShowcase";
-import { FocusSection } from "@/components/FocusSection";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
@@ -16,7 +15,6 @@ export default function Home() {
         <ProjectsSection />
         <CodeShowcase />
         <TeachingSection />
-        <FocusSection />
         <ServicesSection />
       </main>
       <Footer />
