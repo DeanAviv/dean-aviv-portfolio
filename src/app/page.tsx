@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { TeachingSection } from "@/components/TeachingSection";
+import { features } from "@/data/features";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <ProjectsSection />
-        <CodeShowcase />
+        {features.showCodeShowcase ? <CodeShowcase /> : null}
         <TeachingSection />
         <ServicesSection />
       </main>
