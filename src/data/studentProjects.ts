@@ -9,6 +9,7 @@ export type StudentProject = {
   students: StudentCredit[];
   videoUrl: string;
   embedUrl: string;
+  steamUrl?: string;
   projectUrl?: string;
 };
 
@@ -74,5 +75,7 @@ export const studentProjects: StudentProject[] = [
     ],
     videoUrl: "https://www.youtube.com/watch?v=0aUxG23t9Pc",
     embedUrl: "https://www.youtube.com/embed/0aUxG23t9Pc",
+    steamUrl: "https://store.steampowered.com/app/4767740/The_Inspector/",
+    projectUrl: "https://normal-blando.itch.io/the-inspector",
   },
 ];

@@ -7,6 +7,7 @@ type StudentProjectCardProps = {
 
 export function StudentProjectCard({ project }: StudentProjectCardProps) {
   const links = [
+    { label: "Steam page", href: project.steamUrl },
     { label: "View project", href: project.projectUrl },
     { label: "Watch video", href: project.videoUrl },
   ].filter((link): link is { label: string; href: string } => Boolean(link.href));
