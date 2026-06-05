@@ -1,4 +1,5 @@
 import { LinkButton } from "@/components/LinkButton";
+import { features } from "@/data/features";
 import { site } from "@/data/site";
 
 export function HeroSection() {
@@ -24,9 +25,11 @@ export function HeroSection() {
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <LinkButton href="#projects">View projects</LinkButton>
-            <LinkButton href="#code" variant="secondary">
-              Read code
-            </LinkButton>
+            {features.showCodeShowcase ? (
+              <LinkButton href="#code" variant="secondary">
+                Read code
+              </LinkButton>
+            ) : null}
           </div>
         </div>
       </div>

@@ -1,8 +1,13 @@
 import Link from "next/link";
 import { LogoMark } from "@/components/LogoMark";
+import { features } from "@/data/features";
 import { site } from "@/data/site";
 
 export function Header() {
+  const navItems = site.navItems.filter(
+    (item) => features.showCodeShowcase || item.href !== "#code",
+  );
+
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-background/78 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
@@ -17,7 +22,7 @@ export function Header() {
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">
-          {site.navItems.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
