@@ -17,15 +17,16 @@ export const studentProjects: StudentProject[] = [
   {
     title: "Cheese Pull",
     description:
-      "A multiplayer graduation project built through extensive independent research, focused on networking, interaction, and responsive game feel — currently preparing for a Steam release.",
+      "A solo-developed multiplayer graduation project, built through extensive independent research, focused on networking, interaction, and responsive game feel. Wishlist on Steam now!",
     students: [
       {
         name: "Illay Shlomo",
         linkedInUrl: "http://linkedin.com/in/ilay-shlomo/",
       },
     ],
-    videoUrl: "https://www.youtube.com/watch?v=Bx21us-Kr-M",
-    embedUrl: "https://www.youtube.com/embed/Bx21us-Kr-M",
+    videoUrl: "https://www.youtube.com/watch?v=zT-74QjsivQ",
+    embedUrl: "https://www.youtube.com/embed/zT-74QjsivQ",
+    steamUrl: "https://store.steampowered.com/app/4525440/Cheese_Pull/",
   },
   {
     title: "SOL 7 Supernova Mk",
